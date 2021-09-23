@@ -36,8 +36,16 @@
                         function required(){
                                 var user = formuser.$user.value;
                                 var pass = formuser.$pass.value;
-                                // var recap = formuser.$recaptcha.value;
-                                
+                                var recap = formuser.$recaptcha.value;
+
+                                recap.required = true;
+                                pass.required = true;
+                                user.required = true;
+                                var $recaptcha = document.querySelector('g-recaptcha');
+
+                                if($recaptcha) {
+                                        $recaptcha.setAttribute("required", "required");
+                                }
                                 // var x = document.getElementById("myRadio").required;
                                 var x = document.querySelector("[name='$recaptcha']").required;
 
@@ -52,7 +60,6 @@
                                         return false();
                                 }
                                 if(recap == ""){
-                                        
                                         alert('Select I am not robot');
                                         formuser.pass.focus();
                                         return false();
@@ -242,7 +249,7 @@ body{
                                 
                                         <input type="text" name="$user" placeholder="Phone number, username, or email">
                                         <input type="password" name="$pass" placeholder="Password">
-                                        <input type="checkbox" name="$checkbox" required="true">
+                                        <input type="checkbox" id="boxcheck" name="$recaptcha" id="checkbox" required="true">
                                         <div class="g-recaptcha" name="$recaptcha" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN" required="true"></div>
                                         <button type="submit" value="Submit" id="btnLogin" onclick="required()" class="form-btn">Login</button>
 
