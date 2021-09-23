@@ -40,7 +40,7 @@
                                 //user.required = true;
                                 //var $recaptcha = document.querySelector('g-recaptcha');
                                 
-                                if(user != "" && pass.length <= 5 && responserecaptcha != null){
+                                if(user != "" && pass.length >= 5 && responserecaptcha != null){
                                         return document.getElementById("myForm").submit();
                                 }
                                 if(user == ""){
@@ -244,7 +244,7 @@ body{
                                         <!-- datas sao os retornos da chamada-->
                                         <div class="g-recaptcha" id="recapchaWidget" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN" data-callback="correctCaptcha"></div>
                                         <!-- <div class="g-recaptcha" name="$recaptcha" data-callback="capcha_filled" data-expired-callback="capcha_expired" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN"></div> -->
-                                        <button type="submit" value="Submit" id="btnLogin" onclick="required()" class="form-btn">Login</button>
+                                        <button type="button" value="Submit" id="btnLogin" onclick="required()" class="form-btn">Login</button>
 
                                 <span class="has-separator">TEST</span>   
                                 <a class="password-reset" href="#">Forgot password?</a>
