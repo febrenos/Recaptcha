@@ -23,7 +23,7 @@
                         //         }, 800);
                         //render
                         var widId = "";
-                        var onloadCallback = function ()
+                        var onloadCallback = function()
                         {
                                 widId = grecaptcha.render('recapchaWidget', {
                                     'sitekey':'6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN'
@@ -43,7 +43,7 @@
                         function capcha_filled () {
                             allowSubmit = true;
                         }
-                        function check_if_capcha_is_filled (e) {
+                        function check_if_capcha_is_filled(e) {
                             if(allowSubmit) return true;
                             e.preventDefault();
                             alert('Fill in the capcha!');
