@@ -5,7 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="img/logo.png" rel="icon" type="image/x-icon"/>
+        <!-- recaptcha -->
         <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
         <title>Recaptcha</title>
                 <script>
                         // https://www.w3schools.com/howto/howto_js_display_checkbox_text.asp
@@ -19,12 +21,33 @@
                         // SetTimeOut(function cl(){
                         //                 location.reload();
                         //         }, 800);
-                        // function check(checked = true) {
-                        //     const cbs = document.querySelectorAll('input[name="color"]');
-                        //     cbs.forEach((cb) => {
-                        //         cb.checked = checked;
-                        //     });
-                        // }
+                        //render
+                        var widId = "";
+                        var onloadCallback = function ()
+                        {
+                                widId = grecaptcha.render('recapchaWidget', {
+                                    'sitekey':'6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN'
+                                });
+                        };
+
+                        var onloadCallback = function() {
+                          grecaptcha.render('html_element', {
+                            'sitekey' : 'your_site_key',
+                            'callback' : correctCaptcha
+                          });
+                        };
+                        var allowSubmit = false;
+                        function capcha_expired () {
+                                allowSubmit = false;
+                        }
+                        function capcha_filled () {
+                            allowSubmit = true;
+                        }
+                        function check_if_capcha_is_filled (e) {
+                            if(allowSubmit) return true;
+                            e.preventDefault();
+                            alert('Fill in the capcha!');
+                        }
                         function bot(){
                                 location.reload();
                                 document.querySelector("[name='$user']").value = 'usernametest';
@@ -42,6 +65,7 @@
                                 pass.required = true;
                                 user.required = true;
                                 var $recaptcha = document.querySelector('g-recaptcha');
+                                var responserecaptcha = grecaptcha.getResponse();
 
                                 if($recaptcha) {
                                         $recaptcha.setAttribute("required", "required");
@@ -59,7 +83,7 @@
                                         formuser.pass.focus();
                                         return false();
                                 }
-                                if(recap == ""){
+                                if(responserecaptcha == "" || responserecaptcha == null ){
                                         alert('Select I am not robot');
                                         formuser.pass.focus();
                                         return false();
@@ -238,9 +262,6 @@ body{
 <body>
 <div id="wrapper">      
         <div class="container">
-                <div class="phone-app-demo">
-                        <img src="img/celfix.png" alt="">
-                </div>
                 <div class="form-data">
                         <form name="formuser">
                                 <div class="form-title">
@@ -250,7 +271,9 @@ body{
                                         <input type="text" name="$user" placeholder="Phone number, username, or email">
                                         <input type="password" name="$pass" placeholder="Password">
                                         <input type="checkbox" id="boxcheck" name="$recaptcha" id="checkbox" required="true">
-                                        <div class="g-recaptcha" name="$recaptcha" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN" required="true"></div>
+                                        <!-- datas sao os retornos da chamada-->
+                                        <div class="g-recaptcha" id="recapchaWidget" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN" data-callback="correctCaptcha"></div>
+                                        <!-- <div class="g-recaptcha" name="$recaptcha" data-callback="capcha_filled" data-expired-callback="capcha_expired" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN"></div> -->
                                         <button type="submit" value="Submit" id="btnLogin" onclick="required()" class="form-btn">Login</button>
 
                                 <span class="has-separator">TEST</span>   
