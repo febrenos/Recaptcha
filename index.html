@@ -8,6 +8,7 @@
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <title>Recaptcha</title>
                 <script>
+                        // https://www.w3schools.com/howto/howto_js_display_checkbox_text.asp
                         // https://youtu.be/ZZT1xE5ZAwY
                         // https://youtu.be/hcGIA7d5cA0
                         // https://youtu.be/ydzrRCMS2B0
@@ -18,21 +19,28 @@
                         // SetTimeOut(function cl(){
                         //                 location.reload();
                         //         }, 800);
+                        // function check(checked = true) {
+                        //     const cbs = document.querySelectorAll('input[name="color"]');
+                        //     cbs.forEach((cb) => {
+                        //         cb.checked = checked;
+                        //     });
+                        // }
                         function bot(){
                                 location.reload();
                                 document.querySelector("[name='$user']").value = 'usernametest';
                                 document.querySelector("[name='$pass']").value = 'mypassword';
-                                // setTimeout(function(){ document.getElementById("btnLogin").onclick(); }, 3000);
+                                document.querySelector("[name='$checkbox']").checked = true;
+                                document.querySelector("[name='$recaptcha']").checked = true;
                                 document.getElementById("btnLogin").onclick();
                         }
                         function required(){
                                 var user = formuser.$user.value;
                                 var pass = formuser.$pass.value;
+                                // var recap = formuser.$recaptcha.value;
+                                
+                                // var x = document.getElementById("myRadio").required;
+                                var x = document.querySelector("[name='$recaptcha']").required;
 
-
-                                // if(user != "" && pass.length >= 6 && pass != ""){
-                                //     bot();
-                                // }
                                 if(user == ""){
                                         alert('Write your username');
                                         formuser.user.focus();
@@ -40,6 +48,12 @@
                                 }
                                 if(pass == "" || pass.length <= 5){
                                         alert('Fill in the password field with a minimum of 6 characters');
+                                        formuser.pass.focus();
+                                        return false();
+                                }
+                                if(recap == ""){
+                                        
+                                        alert('Select I am not robot');
                                         formuser.pass.focus();
                                         return false();
                                 }
@@ -121,6 +135,10 @@ body{
         border: none;
         border-radius: .4rem;
         cursor: pointer;
+}
+.g-recaptcha{
+        display: flex;
+        width: 20px;
 }
 .has-separator{
         font-size: 1.3rem;
@@ -224,7 +242,8 @@ body{
                                 
                                         <input type="text" name="$user" placeholder="Phone number, username, or email">
                                         <input type="password" name="$pass" placeholder="Password">
-                                        <div class="g-recaptcha" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN"></div>
+                                        <input type="checkbox" name="$checkbox" required="true">
+                                        <div class="g-recaptcha" name="$recaptcha" data-sitekey="6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN" required="true"></div>
                                         <button type="submit" value="Submit" id="btnLogin" onclick="required()" class="form-btn">Login</button>
 
                                 <span class="has-separator">TEST</span>   
