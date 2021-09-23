@@ -22,32 +22,6 @@
                         //                 location.reload();
                         //         }, 800);
                         //render
-                        var widId = "";
-                        var onloadCallback = function()
-                        {
-                                widId = grecaptcha.render('recapchaWidget', {
-                                    'sitekey':'6LewiYYcAAAAANtCYVqIBxcXt4B8TkZZwaTUpetN'
-                                });
-                        };
-
-                        var onloadCallback = function() {
-                          grecaptcha.render('html_element', {
-                            'sitekey' : 'your_site_key',
-                            'callback' : correctCaptcha
-                          });
-                        };
-                        var allowSubmit = false;
-                        function capcha_expired () {
-                                allowSubmit = false;
-                        }
-                        function capcha_filled () {
-                            allowSubmit = true;
-                        }
-                        function check_if_capcha_is_filled(e) {
-                            if(allowSubmit) return true;
-                            e.preventDefault();
-                            alert('Fill in the capcha!');
-                        }
                         function bot(){
                                 location.reload();
                                 document.querySelector("[name='$user']").value = 'usernametest';
@@ -60,19 +34,15 @@
                                 var user = formuser.$user.value;
                                 var pass = formuser.$pass.value;
                                 var recap = formuser.$recaptcha.value;
-
-                                recap.required = true;
-                                pass.required = true;
-                                user.required = true;
-                                var $recaptcha = document.querySelector('g-recaptcha');
                                 var responserecaptcha = grecaptcha.getResponse();
-
-                                if($recaptcha) {
-                                        $recaptcha.setAttribute("required", "required");
+                                //recap.required = true;
+                                //pass.required = true;
+                                //user.required = true;
+                                //var $recaptcha = document.querySelector('g-recaptcha');
+                                
+                                if(user != "" && pass.length <= 5 && responserecaptcha != null){
+                                        return document.getElementById("myForm").submit();
                                 }
-                                // var x = document.getElementById("myRadio").required;
-                                var x = document.querySelector("[name='$recaptcha']").required;
-
                                 if(user == ""){
                                         alert('Write your username');
                                         formuser.user.focus();
