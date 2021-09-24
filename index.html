@@ -34,15 +34,15 @@
                                 var user = formuser.$user.value;
                                 var pass = formuser.$pass.value;
                                 var recap = formuser.$recaptcha.value;
-                                var responserecaptcha = getElementById("recapchaWidget").getResponse();
+                                var responserecaptcha = grecaptcha.getResponse();
                                 //recap.required = true;
                                 //pass.required = true;
                                 //user.required = true;
                                 //var $recaptcha = document.querySelector('g-recaptcha');
                                 
-                                if(user != "" && pass.length > 5 && responserecaptcha != null){
-                                        return document.getElementById("myForm").submit();
-                                }
+                                // if(user != "" && pass.length > 5 && responserecaptcha != null){
+                                //         return document.getElementById("myForm").submit();
+                                //}
                                 if(user == ""){
                                         alert('Write your username');
                                         formuser.user.focus();
